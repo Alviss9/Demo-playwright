@@ -20,7 +20,7 @@ jobs:
       run: npm run test:api
     - name: Upload API reports
       if: ${{ !cancelled() }}
-      uses: actions/upload-artifact@v5
+      uses: actions/upload-artifact@v6
       with:
         name: playwright-api-reports
         path: |
@@ -45,7 +45,7 @@ jobs:
       run: npx playwright test --project=chromium
     - name: Upload UI reports
       if: ${{ !cancelled() }}
-      uses: actions/upload-artifact@v5
+      uses: actions/upload-artifact@v6
       with:
         name: playwright-ui-reports
         path: |
