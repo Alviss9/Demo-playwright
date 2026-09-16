@@ -1,0 +1,28 @@
+{
+  "name": "playwright-project",
+  "version": "1.0.0",
+  "private": true,
+  "type": "commonjs",
+  "scripts": {
+    "clean:screenshots": "powershell -NoProfile -Command \"if (Test-Path 'test-results') { Get-ChildItem 'test-results' -Recurse -Filter '*.png' | Remove-Item -Force }\"",
+    "pretest": "npm run clean:screenshots",
+    "test": "playwright test",
+    "test:parallel": "playwright test --fully-parallel --workers=4",
+    "test:performance": "playwright test tests/ui/performance.spec.js",
+    "test:api": "playwright test --project=api",
+    "test:api-performance": "playwright test tests/api/api-performance.spec.js --project=api",
+    "test:api-register": "playwright test tests/api/user-register-api.spec.js --project=api",
+    "test:api-profile": "playwright test tests/api/user-profile-api.spec.js --project=api",
+    "test:api-profile-update": "playwright test tests/api/user-profile-update-api.spec.js --project=api",
+    "test:ui": "playwright test --ui",
+    "test:debug": "playwright test --debug",
+    "show-report": "playwright show-report"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.57.0",
+    "@types/node": "^24.10.1"
+  },
+  "dependencies": {
+    "playwright": "^1.57.0"
+  }
+}
