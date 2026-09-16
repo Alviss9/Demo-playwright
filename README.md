@@ -93,3 +93,17 @@ git push origin main
 ```
 
 GitHub Actions starts automatically after a push to `main` or `master`.
+
+## Jenkins
+
+The `Jenkinsfile` defines a Jenkins pipeline equivalent to the GitHub Actions workflow.
+
+Before running it, configure a Jenkins NodeJS tool named `node24` with Node.js `24.19.0`. The Jenkins agent must also support shell commands and have permission to install Playwright browser dependencies.
+
+Create a Pipeline job and select **Pipeline script from SCM**, then set the repository URL and script path to:
+
+```text
+Jenkinsfile
+```
+
+The pipeline installs dependencies, installs Playwright browsers, runs API tests, runs Chromium UI tests, publishes JUnit results, and archives the HTML report.
