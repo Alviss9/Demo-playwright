@@ -1,0 +1,5 @@
+# Default owner for all files
+* @Alviss9
+
+# Require review from the repository owner for CI/CD changes
+/.github/workflows/ @Alviss9
