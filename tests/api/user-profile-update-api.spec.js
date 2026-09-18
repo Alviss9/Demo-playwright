@@ -38,15 +38,39 @@ test.describe('Users API', () => {
     expect(updateResponse.status()).toBe(200);
 
     const updateBody = await updateResponse.json();
+    const expectedUpdatedProfile = {
+      email,
+      ...updatedProfile,
+    };
+
     expect(updateBody).toMatchObject({
       success: true,
       status: 200,
       message: 'Profile updated successful',
-      data: {
-        email,
-        ...updatedProfile,
-      },
+      data: expectedUpdatedProfile,
     });
     expect(updateBody.data.id).toBeTruthy();
+
+    const profileAfterUpdateResponse = await request.get(profileEndpoint, {
+      headers: { 'x-auth-token': loginBody.data.token },
+    });
+    expect(profileAfterUpdateResponse.status()).toBe(200);
+
+    const profileAfterUpdateBody = await profileAfterUpdateResponse.json();
+    const expectedSavedProfile = {
+      email,
+      name: updatedProfile.name,
+      phone: updatedProfile.phone,
+      company: updatedProfile.company,
+    };
+
+    expect(profileAfterUpdateBody).toMatchObject({
+      success: true,
+      status: 200,
+      message: 'Profile successful',
+      data: expectedSavedProfile,
+    });
+    expect(profileAfterUpdateBody.data.id).toBeTruthy();
+    expect(profileAfterUpdateBody.data).toMatchObject(expectedSavedProfile);
   });
 });
