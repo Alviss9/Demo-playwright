@@ -55,6 +55,27 @@ Run tests in parallel:
 npm run test:parallel
 ```
 
+## JMeter performance test
+
+This project includes a sample JMeter plan at `jmeter/performance-test.jmx` which exercises the public practice site and generates HTML performance output.
+
+Install JMeter first:
+
+```powershell
+winget install ApacheSoftwareFoundation.JMeter
+```
+
+Then run:
+
+```powershell
+npm run test:jmeter
+```
+
+The results are saved under:
+
+- `jmeter/results/jmeter-results.jtl`
+- `jmeter/report/`
+
 ## Reports
 
 Open the latest HTML report with:

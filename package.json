@@ -9,6 +9,7 @@
     "test": "playwright test",
     "test:parallel": "playwright test --fully-parallel --workers=4",
     "test:performance": "playwright test tests/ui/performance.spec.js",
+    "test:jmeter": "powershell -NoProfile -Command \"$ErrorActionPreference='Stop'; if (-not (Get-Command jmeter -ErrorAction SilentlyContinue)) { throw 'JMeter is not installed or not on PATH. Install Apache JMeter and ensure jmeter.exe is available.' }; New-Item -ItemType Directory -Force -Path 'jmeter/results' | Out-Null; jmeter -n -t 'jmeter/performance-test.jmx' -l 'jmeter/results/jmeter-results.jtl' -e -o 'jmeter/report'\"",
     "test:api": "playwright test --project=api",
     "test:api-performance": "playwright test tests/api/api-performance.spec.js --project=api",
     "test:api-register": "playwright test tests/api/user-register-api.spec.js --project=api",
